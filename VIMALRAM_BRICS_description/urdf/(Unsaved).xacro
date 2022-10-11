@@ -1,0 +1,111 @@
+<?xml version="1.0" ?>
+<robot name="(Unsaved)" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find (Unsaved)_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find (Unsaved)_description)/urdf/(Unsaved).trans" />
+<xacro:include filename="$(find (Unsaved)_description)/urdf/(Unsaved).gazebo" />
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.0024901979784925643 0.002368270865018323 0.060021022608977306" rpy="0 0 0"/>
+    <mass value="1.317489111222947"/>
+    <inertia ixx="0.001739" iyy="0.005522" izz="0.006384" ixy="0.0" iyz="0.0" ixz="0.000193"/>
+  </inertial>
+  <visual>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://(Unsaved)_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://(Unsaved)_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="whell_2_1">
+  <inertial>
+    <origin xyz="-2.3777173234484916e-07 0.005000270865018086 -8.655737460117052e-08" rpy="0 0 0"/>
+    <mass value="0.6165375582669965"/>
+    <inertia ixx="0.00039" iyy="0.000771" izz="0.00039" ixy="0.0" iyz="-0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.060969 -0.057368 -0.049793" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://(Unsaved)_description/meshes/whell_2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.060969 -0.057368 -0.049793" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://(Unsaved)_description/meshes/whell_2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="whell_1">
+  <inertial>
+    <origin xyz="-2.3777173283751063e-07 -0.004999729134981805 -8.655737484403181e-08" rpy="0 0 0"/>
+    <mass value="0.6165375582669967"/>
+    <inertia ixx="0.00039" iyy="0.000771" izz="0.00039" ixy="0.0" iyz="0.0" ixz="-0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.060969 0.052632 -0.049793" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://(Unsaved)_description/meshes/whell_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.060969 0.052632 -0.049793" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://(Unsaved)_description/meshes/whell_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="lidar_1">
+  <inertial>
+    <origin xyz="-0.03517029062561931 2.7086501811846367e-07 0.006398443480794713" rpy="0 0 0"/>
+    <mass value="0.4075053051274938"/>
+    <inertia ixx="0.000117" iyy="0.000191" izz="0.000291" ixy="0.0" iyz="0.0" ixz="-9e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.102246 -0.002368 -0.074615" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://(Unsaved)_description/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.102246 -0.002368 -0.074615" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://(Unsaved)_description/meshes/lidar_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Rev1" type="continuous">
+  <origin xyz="-0.060969 0.057368 0.049793" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="whell_2_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="Rev2" type="continuous">
+  <origin xyz="-0.060969 -0.052632 0.049793" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="whell_1"/>
+  <axis xyz="-0.0 -1.0 -0.0"/>
+</joint>
+
+<joint name="Rigid6" type="fixed">
+  <origin xyz="0.102246 0.002368 0.074615" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar_1"/>
+</joint>
+
+</robot>
